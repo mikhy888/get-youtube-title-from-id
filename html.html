@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>title youtube</title>
+</head>
+<body>
+
+
+
+<div id="youtube-channel-feed"></div>
+
+<script src="jquery-1.11.2.js"></script>
+
+
+<!-- <script src="https://www.googleapis.com/youtube/v3/ 	videos?id=YOUR_VIDEO_ID&key=AIzaSyDDBk8tAkod1VRRNyFZF09fgQyMpnSe5HI&part=snippet,contentDetails,statistics,status"></script> -->
+
+<script type="text/javascript">
+var htmlString = "";
+var apiKey = 'AIzaSyDDBk8tAkod1VRRNyFZF09fgQyMpnSe5HI'; 
+var channelID = 'UCygLWm0hpaG0QJ5n0Udi1kQ';
+var maxResults = 9;
+
+$.getJSON('https://www.googleapis.com/youtube/v3/videos?id=EYjBcYyxyGM&key=' + apiKey + '&part=snippet,contentDetails,statistics,status', function(data) {
+	$.each(data.items, function(i, item) {
+		//var videoID = item['id']['videoId'];
+		var videoID = 'EYjBcYyxyGM';
+		var title = item['snippet']['title'];
+        var videoEmbed = "https://www.youtube.com/embed/" + videoID;
+		htmlString += '<div class="video">' + title + '<br><a href="" ><img src="http://img.youtube.com/vi/' + videoID + '/0.jpg"></a></div>';
+	});
+	$('#youtube-channel-feed').html(htmlString);
+});
+</script> 
+
+</body>
+</html>
